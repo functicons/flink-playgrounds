@@ -64,6 +64,7 @@ public class ClickEventCount {
 	public static final Time WINDOW_SIZE = Time.of(15, TimeUnit.SECONDS);
 
 	public static void main(String[] args) throws Exception {
+    System.out.println("Click event count");
 		final ParameterTool params = ParameterTool.fromArgs(args);
 
 		final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();

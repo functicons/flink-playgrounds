@@ -37,6 +37,7 @@ public class CountingAggregator implements AggregateFunction<ClickEvent, Long, L
 
 	@Override
 	public Long getResult(final Long accumulator) {
+    System.out.println("accumulator=" + accumulator);
 		return accumulator;
 	}
 

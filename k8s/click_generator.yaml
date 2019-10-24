@@ -1,0 +1,23 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: click-generator
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: click-generator
+    spec:
+      containers:
+        - name: click-generator
+          image: gcr.io/google.com/hadoop-cloud-dev/click-generator
+          command: ["java"]
+          args:
+            - "-classpath"
+            - "/opt/ClickCountJob.jar:/opt/flink/lib/*"
+            - "org.apache.flink.playgrounds.ops.clickcount.ClickEventGenerator"
+            - "--bootstrap.servers"
+            - "dagang-kafka-cluster-m-0:9092"
+            - "--topic"
+            - "input"

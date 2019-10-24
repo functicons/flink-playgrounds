@@ -47,7 +47,7 @@ import static org.apache.flink.playgrounds.ops.clickcount.ClickEventCount.WINDOW
  */
 public class ClickEventGenerator {
 
-	public static final int EVENTS_PER_WINDOW = 1000;
+	public static final int EVENTS_PER_WINDOW = 10;
 
 	private static final List<String> pages = Arrays.asList("/help", "/index", "/shop", "/jobs", "/about", "/news");
 
@@ -56,6 +56,7 @@ public class ClickEventGenerator {
 	public static final long DELAY = WINDOW_SIZE.toMilliseconds() / pages.size() / EVENTS_PER_WINDOW;
 
 	public static void main(String[] args) throws Exception {
+    System.out.println("Click event generator");
 
 		final ParameterTool params = ParameterTool.fromArgs(args);
 
@@ -67,7 +68,9 @@ public class ClickEventGenerator {
 
 		ClickIterator clickIterator = new ClickIterator();
 
-		while (true) {
+		for (int i = 0; ; i++) {
+
+      System.out.println("Generating batch " + i);
 
 			ProducerRecord<byte[], byte[]> record = new ClickEventSerializationSchema(topic).serialize(
 					clickIterator.next(),

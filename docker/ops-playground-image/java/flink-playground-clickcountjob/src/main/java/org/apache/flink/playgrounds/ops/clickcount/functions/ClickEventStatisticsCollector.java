@@ -41,7 +41,7 @@ public class ClickEventStatisticsCollector
 			final Collector<ClickEventStatistics> out) throws Exception {
 
 		Long count = elements.iterator().next();
-
+    System.out.println("ClickEventStatisticsCollector, count=" + count);
 		out.collect(new ClickEventStatistics(new Date(context.window().getStart()), new Date(context.window().getEnd()), page, count));
 	}
 }
